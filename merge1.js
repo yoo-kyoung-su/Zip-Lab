@@ -5,8 +5,8 @@ var express = require('express');
 
 var app = express();
 
-app.locals.jdata = require("./ks.json");
-app.locals.jdata1 = require("./dj.json");
+app.locals.jdata = require("./dj1.json");
+app.locals.jdata1 = require("./ks1.json");
 var option = { encoding: 'utf-8', flag: 'w'};
 var data = app.locals.jdata;
 var data1 = app.locals.jdata1;
@@ -80,8 +80,9 @@ for(var i=0; i<size; i++)
         
         for(var j=0; j<minsize; j++)
         {
-
-            if (data.map[i][j] > data1.map[i][j])
+            if (data.map[i][j] == 53 || data1.map[i][j] == 53)
+                mergedata.map[i][j] = 53;
+            else if (data.map[i][j] > data1.map[i][j])
               mergedata.map[i][j] = data.map[i][j];
             else 
               mergedata.map[i][j] = data1.map[i][j];  
@@ -162,4 +163,4 @@ for(var i=0; i<size1; i++)
 var obj = mergedata;
 obj = JSON.stringify(obj);
 
-fs.writeFileSync('./ko.json',obj,option);
+fs.writeFileSync('./ko8.json',obj,option);
